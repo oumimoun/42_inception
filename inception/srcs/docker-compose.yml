@@ -1,0 +1,59 @@
+services:
+  mariadb:
+    image: mariadb:oumimoun
+    build: ./requirements/mariadb
+    container_name: mariadb
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  nginx:
+    image: nginx:oumimoun
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+      # - "8443:443"
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    networks:
+      - inception_network
+    depends_on:
+      - wordpress
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+    restart: always
+
+  wordpress:
+    image: wordpress:oumimoun
+    build: ./requirements/wordpress
+    container_name: wordpress
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    networks:
+      - inception_network
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
+    restart: always
+
+volumes:
+  mariadb_data:
+  wordpress_data:
+
+networks:
+  inception_network:
+    driver: bridge
