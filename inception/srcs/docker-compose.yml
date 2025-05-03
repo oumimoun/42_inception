@@ -11,19 +11,21 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
     restart: always
+    networks:
+      - inception_network
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
-      retries: 5
+      retries: 10
       start_period: 30s
-      timeout: 10s
+      timeout: 5s
 
   nginx:
     image: nginx:oumimoun
     build: ./requirements/nginx
     container_name: nginx
     ports:
-      - "8443:8443"
+      - "443:443"
     volumes:
       - wordpress_data:/var/www/wordpress
     networks:
