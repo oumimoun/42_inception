@@ -4,10 +4,11 @@ RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y nginx openssl
 
-RUN mkdir -p /etc/nginx/ssl
+RUN mkdir -p /etc/nginx/certs
 
-RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout \
-    /etc/nginx/ssl/inception.key -subj "/C=MO/ST=KH/L=KH/O=42/OU=42/CN=localhost"
+RUN openssl req -x509 -nodes -out /etc/nginx/certs/fullchain.pem -keyout \
+    /etc/nginx/certs/privkey.pem -subj "/C=MO/ST=KH/L=KH/O=42/OU=42/CN=localhost"
+
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
