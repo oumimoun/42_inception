@@ -17,4 +17,4 @@ EOF
 
 mysqladmin -uroot shutdown
 
-mysqld_safe --mysqld="--bind-address=0.0.0.0" # -> need to connect remotely
+exec mariadbd --bind-address=0.0.0.0
