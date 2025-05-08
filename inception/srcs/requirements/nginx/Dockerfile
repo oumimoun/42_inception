@@ -9,7 +9,7 @@ RUN mkdir -p /etc/nginx/certs
 RUN openssl req -x509 -nodes -out /etc/nginx/certs/fullchain.pem -keyout \
     /etc/nginx/certs/privkey.pem -subj "/C=MO/ST=KH/L=KH/O=42/OU=42/CN=localhost"
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /var/www/wordpress
 
