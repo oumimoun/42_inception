@@ -1,8 +1,7 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade -y
-
-RUN apt-get install -y curl php-fpm php-mysql mariadb-client
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y curl php-fpm php-mysql mariadb-client
 
 COPY ./conf/wp-config.sh /
 

@@ -6,10 +6,9 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
     restart: always
     networks:
       - inception_network
@@ -49,10 +48,9 @@ services:
       mariadb:
         condition: service_healthy
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_HOST=mariadb
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
       - DOMAIN_NAME=${DOMAIN_NAME}
       - WP_TITLE=${WP_TITLE}
       - WP_ADMIN_USERNAME=${WP_ADMIN_USERNAME}
@@ -66,7 +64,15 @@ services:
 
 volumes:
   mariadb_data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/oumimoun/data
   wordpress_data:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/oumimoun/data
 
 networks:
   inception_network:
