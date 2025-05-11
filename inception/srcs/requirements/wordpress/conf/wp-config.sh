@@ -4,10 +4,10 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
-mkdir -p /var/www/wordpress
-cd /var/www/wordpress
-chown -R www-data:www-data /var/www/wordpress
-chmod -R 755 /var/www/wordpress/
+mkdir -p /var/www/html
+cd /var/www/html
+chown -R www-data:www-data /var/www/html
+chmod -R 755 /var/www/html/
 
 if [ ! -f wp-load.php ]; then
   wp core download --allow-root
