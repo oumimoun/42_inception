@@ -1,5 +1,5 @@
 [X] volumes
-[ ] ssl
+[X] ssl
 [X] PID 1
 [X] differrence between docker  container and docker compose container
 
@@ -11,3 +11,5 @@
 [X] forground and background
 
 [X] NOTE: Without exec, your script is PID 1, and the real app is a child — it won’t receive signals directly.
+
+[ ] network
