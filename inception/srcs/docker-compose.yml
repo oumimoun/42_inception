@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   mariadb:
     image: mariadb:oumimoun
@@ -17,7 +18,6 @@ services:
       interval: 10s
       retries: 10
       start_period: 30s
-      start_interval: 30s
       timeout: 5s
 
   nginx:
@@ -64,15 +64,15 @@ services:
 
 volumes:
   mariadb_data:
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/oumimoun/data
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/oumimoun/data
   wordpress_data:
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/oumimoun/data
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/oumimoun/data
 
 networks:
   inception_network:
