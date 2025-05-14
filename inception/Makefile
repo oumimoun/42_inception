@@ -11,8 +11,8 @@ down:
 restart: down up
 
 fclean: down
-	@docker rmi -f $(docker images -aq)
+	@docker image prune -a -f
 	@docker volume prune -f
-	@docker system prune -f
+	@docker system prune -a -f
 
 re: fclean up
