@@ -3,10 +3,13 @@ COMPOSE_FILE=srcs/docker-compose.yml
 all: up
 
 up:
-	@docker-compose -f $(COMPOSE_FILE) up --build
+	@mkdir -p /home/oumimoun/data/wordpress_data
+	@mkdir -p /home/oumimoun/data/mariadb_data
+	@docker compose -f $(COMPOSE_FILE) up --build
 
 down:
-	@docker-compose -f $(COMPOSE_FILE) down
+	@docker compose -f $(COMPOSE_FILE) down -v 
+	
 
 restart: down up
 

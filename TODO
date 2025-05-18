@@ -18,8 +18,11 @@ chown -R www-data:www-data /var/www/html -> change ownership
 the first www-data refers to the user
 the second www-data refers to the group.
 
-compose 
-network 
-volume 
-ssl digram
+```
+[ ] compose 
+[ ] docker-network 
+[ ] volume 
+[ ] ssl digram
 
+```
+-nodes: Skips the option to encrypt the private key.

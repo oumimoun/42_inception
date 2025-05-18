@@ -20,7 +20,6 @@ if [ ! -f wp-config.php ]; then
     --dbuser="$MARIADB_USER" \
     --dbpass="$MARIADB_PASSWORD" \
     --dbhost=mariadb:3306 \
-    --skip-check \
     --allow-root
 fi
 
